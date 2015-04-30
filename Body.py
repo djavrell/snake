@@ -11,5 +11,19 @@ class body():
         """
         self.body = []
 
-    def init_body(self, x, y, head):
-        pass
+    def init_body(self, head):
+        i = 0
+        while i <= define.len_body:
+            self.body.append((head[0] + i, head[1]))
+            i += 1
+
+    def rise(self, d):
+        t = self.body[0]
+        n = (t[0] + d[0], t[1] + d[1])
+        self.body.insert(0, n)
+
+    def move(self, d):
+        t = self.body[0]
+        self.body.pop()
+        n = (t[0] + d[0], t[1] + d[1])
+        self.body.insert(0, n)

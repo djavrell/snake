@@ -2,7 +2,7 @@
 __author__ = 'proute_k'
 
 import sys
-import Game
+from Game import *
 
 
 def is_nb(nb):
@@ -16,11 +16,8 @@ def run(av):
     try:
         if is_nb(av[1]) is not True or is_nb(av[2]) is not True:
             raise ValueError
-        g = Game.game(int(av[1]), int(av[2]))
-
-        g.move()
-        g.aff()
-
+        g = game(int(av[1]), int(av[2]))
+        g.start()
     except ValueError:
         print("x and y must be a number")
 
