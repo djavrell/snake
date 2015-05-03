@@ -37,7 +37,8 @@ class gui():
         ws = self.win.get_surface()
         sdl2.ext.fill(ws, c, (px, py, px + define.size_case, py + define.size_case))
 
-    def aff(self):
+    def aff(self, map):
+        self.draw(map)
         self.win.refresh()
         self.win.show()
 

@@ -1,13 +1,15 @@
 #! /usr/bin/python3.4
 __author__ = 'proute_k'
 
-import sdl2
-import Game
 from sdl2.ext import Color
 
 len_body = 3
 win_name = "Snake V2 python"
 size_case = 20
+
+# number of turn for the life of the cherry
+life_cherry = 30
+list_rand = [0, 3, 5, 8]
 
 # elem
 case = ' '
@@ -40,12 +42,3 @@ color = {
     "apple": Color(119, 255, 0),
     "cherry": Color(192, 22, 22),
     }
-
-# event
-# call = {
-#     sdl2.SDLK_UP: Game.game.moveUp(),
-#     sdl2.SDLK_DOWN: Game.game.moveDown(),
-#     sdl2.SDLK_LEFT: Game.game.moveLeft(),
-#     sdl2.SDLK_RIGHT: Game.game.moveRight(),
-#     sdl2.SDLK_ESCAPE: Game.game.Quit(),
-# }

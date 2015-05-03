@@ -12,12 +12,16 @@ class game:
         self.b = board(mx, my)
         self.gui = gui(mx, my)
         self.last = sdl2.SDLK_UP
-        self.dir = {sdl2.SDLK_UP: [-1, 0], sdl2.SDLK_DOWN: [1, 0], sdl2.SDLK_LEFT: [0, -1], sdl2.SDLK_RIGHT: [0, 1], }
+        self.dir = {
+            sdl2.SDLK_UP: [-1, 0],
+            sdl2.SDLK_DOWN: [1, 0],
+            sdl2.SDLK_LEFT: [0, -1],
+            sdl2.SDLK_RIGHT: [0, 1],
+            }
 
     def start(self):
         run = True
         self.b.initBoard()
-        # self.gui.deb(self.b.getmap())
         while run:
             for e in sdl2.ext.get_events():
                 if e.type == sdl2.SDL_QUIT:
@@ -29,8 +33,7 @@ class game:
                     if k == sdl2.SDLK_ESCAPE:
                         self.Quit()
             run = self.move(self.dir[self.last])
-            self.gui.draw(self.b.getmap())
-            self.gui.aff()
+            self.gui.aff(self.b.getmap())
             sdl2.SDL_Delay(200)
         sdl2.ext.quit()
         return 0
@@ -44,20 +47,19 @@ class game:
         h = self.b.get_head()
         n = (h[0] + d[0], h[1] + d[1])
         self.b.set_head(n[0], n[1])
-        if self.b.isApple(n) or self.b.isCherry(n):
+        if self.b.b.isBody(n):
+            return False
+        if self.b.apple.isApple(n):
             self.b.b.rise(d)
-            self.b.setApple()
-            self.b.setCherry()
+            self.b.apple.setApple(self.b.getmap())
+        elif self.b.cherry.isCherry(self.b.getmap(), n):
+            self.b.b.rise(d)
+            self.b.cherry.setCherry(self.b.getmap())
         else:
             self.b.b.move(d)
         self.b.updateBoard()
-        ret = self.isWall(n)
+        ret = self.b.isWall(n)
         return ret
-
-    def isWall(self, p):
-        if p[0] < 0 or p[0] > self.b.mx or p[1] < 0 or p[1] > self.b.my:
-            return False
-        return True
 
     def Quit(self):
         exit()

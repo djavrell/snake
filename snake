@@ -3,6 +3,7 @@ __author__ = 'proute_k'
 
 import sys
 from Game import *
+from random import seed
 
 
 def is_nb(nb):
@@ -14,6 +15,7 @@ def is_nb(nb):
 
 def run(av):
     try:
+        seed()
         if is_nb(av[1]) is not True or is_nb(av[2]) is not True:
             raise ValueError
         g = game(int(av[1]), int(av[2]))

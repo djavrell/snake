@@ -17,6 +17,11 @@ class body():
             self.body.append((head[0] + i, head[1]))
             i += 1
 
+    def isBody(self, d):
+        if d in self.body:
+            return True
+        return False
+
     def rise(self, d):
         t = self.body[0]
         n = (t[0] + d[0], t[1] + d[1])
