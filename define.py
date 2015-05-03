@@ -3,6 +3,9 @@ __author__ = 'proute_k'
 
 from sdl2.ext import Color
 
+
+usage = "./snake x y"
+num = "x and y must be a number"
 len_body = 3
 win_name = "Snake V2 python"
 size_case = 20

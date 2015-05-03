@@ -7,10 +7,10 @@ from Board import *
 from Gui import *
 
 
-class game:
-    def __init__(self, mx = 10, my = 10):
-        self.b = board(mx, my)
-        self.gui = gui(mx, my)
+class Game:
+    def __init__(self, mx=10, my=10):
+        self.board = Board(mx, my)
+        self.gui = Gui(mx, my)
         self.last = sdl2.SDLK_UP
         self.dir = {
             sdl2.SDLK_UP: [-1, 0],
@@ -21,7 +21,7 @@ class game:
 
     def start(self):
         run = True
-        self.b.initBoard()
+        self.board.init_board()
         while run:
             for e in sdl2.ext.get_events():
                 if e.type == sdl2.SDL_QUIT:
@@ -29,40 +29,40 @@ class game:
                 if e.type == sdl2.SDL_KEYDOWN:
                     k = e.key.keysym.sym
                     if k in self.dir.keys() and self.last != k:
-                        self.last = self.checkKey(k)
+                        self.last = self.check_key(k)
                     if k == sdl2.SDLK_ESCAPE:
-                        self.Quit()
+                        self.quit()
             run = self.move(self.dir[self.last])
-            self.gui.aff(self.b.getmap())
+            self.gui.aff(self.board.get_map())
             sdl2.SDL_Delay(200)
         sdl2.ext.quit()
         return 0
 
-    def checkKey(self, k):
+    def check_key(self, k):
         l = self.dir[self.last]
         n = self.dir[k]
         return self.last if n[0] == l[0] or n[1] == l[1] else k
 
     def move(self, d):
-        h = self.b.get_head()
+        h = self.board.get_head()
         n = (h[0] + d[0], h[1] + d[1])
-        self.b.set_head(n[0], n[1])
-        if self.b.b.isBody(n):
+        self.board.set_head(n[0], n[1])
+        if self.board.body.is_body(n):
             return False
-        if self.b.apple.isApple(n):
-            self.b.b.rise(d)
-            self.b.apple.setApple(self.b.getmap())
-        elif self.b.cherry.isCherry(self.b.getmap(), n):
-            self.b.b.rise(d)
-            self.b.cherry.setCherry(self.b.getmap())
+        if self.board.apple.is_apple(n):
+            self.board.body.rise(d)
+            self.board.apple.set_apple(self.board.get_map())
+        elif self.board.cherry.is_cherry(self.board.get_map(), n):
+            self.board.body.rise(d)
+            self.board.cherry.set_cherry(self.board.get_map())
         else:
-            self.b.b.move(d)
-        self.b.updateBoard()
-        ret = self.b.isWall(n)
+            self.board.body.move(d)
+        self.board.update_board()
+        ret = self.board.is_wall(n)
         return ret
 
-    def Quit(self):
-        exit()
-
     def aff(self):
-        self.gui.draw(self.b)
+        self.gui.draw(self.board)
+
+    def quit(self):
+        exit()

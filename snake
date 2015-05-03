@@ -2,6 +2,7 @@
 __author__ = 'proute_k'
 
 import sys
+import define
 from Game import *
 from random import seed
 
@@ -18,14 +19,14 @@ def run(av):
         seed()
         if is_nb(av[1]) is not True or is_nb(av[2]) is not True:
             raise ValueError
-        g = game(int(av[1]), int(av[2]))
+        g = Game(int(av[1]), int(av[2]))
         g.start()
     except ValueError:
-        print("x and y must be a number")
+        print(define.num)
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 3:
         run(sys.argv)
     else:
-        print('./main.py x y')
+        print(define.usage)

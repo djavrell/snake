@@ -4,7 +4,7 @@ __author__ = 'proute_k'
 import define
 
 
-class body():
+class Body():
     def __init__(self):
         """
             [(x,y), (x,y), ...] => morceau du corps
@@ -17,7 +17,7 @@ class body():
             self.body.append((head[0] + i, head[1]))
             i += 1
 
-    def isBody(self, d):
+    def is_body(self, d):
         if d in self.body:
             return True
         return False

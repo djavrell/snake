@@ -7,7 +7,7 @@ import sdl2
 import sdl2.ext
 
 
-class gui():
+class Gui():
     def __init__(self, wx, wy):
         sdl2.ext.init()
         self.R = sdl2.ext.Resources(__file__, "sprite")
@@ -29,11 +29,11 @@ class gui():
         my = int(self.y/define.size_case)
         for y in range(my):
             for x in range(mx):
-                self.drawSquar(x * define.size_case,
+                self.draw_squar(x * define.size_case,
                                y * define.size_case,
                                define.color[define.relem[map[y][x]]])
 
-    def drawSquar(self, px, py, c):
+    def draw_squar(self, px, py, c):
         ws = self.win.get_surface()
         sdl2.ext.fill(ws, c, (px, py, px + define.size_case, py + define.size_case))
 

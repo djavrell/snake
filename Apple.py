@@ -11,7 +11,7 @@ class Apple():
         self.my = my
         self.apple = []
 
-    def setApple(self, map):
+    def set_apple(self, map):
         x, y = 0, 0
         while 1:
             x = randint(0, self.mx - 1)
@@ -20,7 +20,7 @@ class Apple():
                 self.apple = [x, y]
                 break
 
-    def isApple(self, p):
+    def is_apple(self, p):
         if p[0] == self.apple[0] and p[1] == self.apple[1]:
             return True
         return False

@@ -13,7 +13,7 @@ class Cherry():
         self.life = 0
         self.current = 0
 
-    def setCherry(self, map):
+    def set_cherry(self, map):
         self.life = define.life_cherry
         self.current = self.life
         x, y = 0, 0
@@ -27,18 +27,18 @@ class Cherry():
         else:
             self.cherry = [-1, -1]
 
-    def isCherryConst(self, p):
+    def is_cherry_const(self, p):
         if p[0] == self.cherry[0] and p[1] == self.cherry[1]:
             return True
         return False
 
-    def isCherry(self, map, p):
+    def is_cherry(self, map, p):
         if p[0] == self.cherry[0] and p[1] == self.cherry[1]:
             return True
-        self.setLife(map)
+        self.set_life(map)
         return False
 
-    def setLife(self, map):
+    def set_life(self, map):
         self.current -= 1
         if self.current == 0:
-            self.setCherry(map)
+            self.set_cherry(map)
